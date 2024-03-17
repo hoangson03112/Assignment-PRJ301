@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <form action="StudentGrade" method="POST">
             <input type="hidden" name="gid" value="${gid}">
             <input type="hidden" name="subid" value="${subid}">

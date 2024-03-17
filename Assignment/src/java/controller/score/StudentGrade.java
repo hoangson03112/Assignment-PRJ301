@@ -31,8 +31,9 @@ public class StudentGrade extends auth {
         int subid = Integer.parseInt(req.getParameter("subid"));
 
         StudentContext dbstudent = new StudentContext();
-        GroupContext dbGroup = new GroupContext();
-        ArrayList<Student> students = dbGroup.getStudentByGroup(gid);
+        
+        ArrayList<Student> students= dbstudent.list();
+        
         boolean isExisted = false;
         for (Student student : students) {
             if (student.getSid() == sid) {
