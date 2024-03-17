@@ -93,6 +93,8 @@
             }
             
             .button {
+                margin-left: 22rem;
+                margin-bottom: .6rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -186,7 +188,7 @@
         </form>
 
 
-        <table border="1px" style="text-align: center">
+        <table border="1px" style="text-align: center;width: 500px">
             <tr>
                 <td>ID</td>
                 <td>Name</td>
