@@ -27,7 +27,7 @@ public class deleteStudent extends auth {
       
           dbstudent.deleteStudent(sid);
           dbstudent.deleteEnrollment(sid, gid);
-           resp.getWriter().print("Delete Success");
+          resp.getWriter().print("Delete Success");
         
 
 //        req.getRequestDispatcher("view/StudentGrade.jsp").forward(req, resp);

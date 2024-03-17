@@ -61,7 +61,6 @@
                                       
                                         subField.setAccessible(true);
                                         Object subValue = subField.get(value);
-                                          System.out.println(field.getName()+":"+subValue);
                                         if (subValue != null && !field.getName().equals("student") && !field.getName().equals("subject")) {
                                             total=total+(double)subValue;
                                             count++;
@@ -88,6 +87,6 @@
             %>
 
         </table>
-             <h1>Total: <%=Math.round(10.0*total/count)/10.0 %></h1>   
+        <h1>Total: <%=Math.round(10.0*total/count)/10.0 %></h1>   
     </body>
 </html>
