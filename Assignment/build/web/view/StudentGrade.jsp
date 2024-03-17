@@ -207,6 +207,7 @@
                 <td><a style=" text-decoration: none; " href="ViewGrade?gid=<%=gid %>&sid=<%=student.getSid()%>&subid=<%=subid%>">View Grade</a></td> 
                 <td> <form method="POST" action="deletestudent">
                         <input type="hidden" name="gid" value="${param.gid}">
+                        <input type="hidden" name="subid" value="${param.subid}">
                         <input type="hidden" name="sid" value="<%=student.getSid()%>">
                         <button id="dele" type="submit">Delete</button>
                     </form>

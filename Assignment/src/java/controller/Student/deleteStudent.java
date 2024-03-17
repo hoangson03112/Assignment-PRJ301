@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller.Student;
+
 import controller.login.auth;
 import data.StudentContext;
 import ennity.Account;
@@ -16,19 +17,25 @@ import jakarta.servlet.http.HttpServletResponse;
  * @author Hoàng Sơn
  */
 public class deleteStudent extends auth {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
         int gid = Integer.parseInt(req.getParameter("gid"));
         int sid = Integer.parseInt(req.getParameter("sid"));
+        int subid = Integer.parseInt(req.getParameter("subid"));
         StudentContext dbstudent = new StudentContext();
-        dbstudent.deleteStudent(sid);
-        dbstudent.deleteEnrollment(sid, gid);
-        req.getRequestDispatcher("view/StudentGrade.jsp").forward(req, resp);
+      
+          dbstudent.deleteStudent(sid);
+          dbstudent.deleteEnrollment(sid, gid);
+           resp.getWriter().print("Delete Success");
+        
+
+//        req.getRequestDispatcher("view/StudentGrade.jsp").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
