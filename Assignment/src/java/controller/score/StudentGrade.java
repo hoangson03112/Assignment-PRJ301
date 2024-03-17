@@ -25,14 +25,29 @@ public class StudentGrade extends auth {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-        int sid= Integer.parseInt(req.getParameter("sid"));
-        String sname= req.getParameter("sname");
-        int gid= Integer.parseInt(req.getParameter("gid"));
-        StudentContext dbstudent= new StudentContext();
-        dbstudent.addStudent(sid, sname);
-        dbstudent.addEnrollment(sid, gid);
-        resp.getWriter().print("Success!");
-        
+        int sid = Integer.parseInt(req.getParameter("sid"));
+        String sname = req.getParameter("sname");
+        int gid = Integer.parseInt(req.getParameter("gid"));
+        int subid = Integer.parseInt(req.getParameter("subid"));
+
+        StudentContext dbstudent = new StudentContext();
+        GroupContext dbGroup = new GroupContext();
+        ArrayList<Student> students = dbGroup.getStudentByGroup(gid);
+        boolean isExisted = false;
+        for (Student student : students) {
+            if (student.getSid() == sid) {
+                isExisted = true;
+                resp.getWriter().print("Student existed!");
+                break;
+            }
+            
+        }
+        if (!isExisted) {
+            dbstudent.addStudent(sid, sname);
+            dbstudent.addEnrollment(sid, gid);
+            resp.getWriter().print("Add Student Success!");
+        }
+
     }
 
     @Override
@@ -42,7 +57,6 @@ public class StudentGrade extends auth {
 
         GroupContext dbGroup = new GroupContext();
         ArrayList<Student> students = dbGroup.getStudentByGroup(gid);
-  
 
         SubjectContext dbSubject = new SubjectContext();
         ArrayList<Subject> subs = dbSubject.list();

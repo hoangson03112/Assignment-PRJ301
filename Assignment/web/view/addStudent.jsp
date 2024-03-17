@@ -14,6 +14,8 @@
     <body>
         <form action="StudentGrade" method="POST">
             <input type="hidden" name="gid" value="${gid}">
+            <input type="hidden" name="subid" value="${subid}">
+
             Id: <input type="text" name="sid"><br/>
             Name: <input type="text" name="sname"><br/>
             <input type="submit" value="Add"/>

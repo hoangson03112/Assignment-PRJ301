@@ -19,15 +19,17 @@ public class addStudent extends auth {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-       
+
         req.setAttribute("gid", Integer.parseInt(req.getParameter("gid")));
+        req.setAttribute("subid", Integer.parseInt(req.getParameter("subid")));
+
         req.getRequestDispatcher("view/addStudent.jsp").forward(req, resp);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-
+        req.getRequestDispatcher("view/addStudent.jsp").forward(req, resp);
     }
 
 }

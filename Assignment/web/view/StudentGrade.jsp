@@ -18,7 +18,6 @@
         <title>Score Page</title>
         <style>
 
-
             #dele {
                 margin: 0 5px;
                 position: relative;
@@ -91,7 +90,7 @@
                 background-color: #e80505;
                 color: wheat;
             }
-            
+
             .button {
                 margin-left: 22rem;
                 margin-bottom: .6rem;
@@ -180,7 +179,10 @@
 
 
         <form action="addstudent" method="POST">
-            <input type="hidden" name="gid" value="${param.gid}">
+            <input type="hidden" name="gid" value="${param.gid}">          
+            <input type="hidden" name="subid" value="${param.subid}">
+
+
             <button type="submit" class="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon"><g stroke-width="1.5" stroke-linecap="round" stroke="#de8a2a"><circle r="7.5" cy="10" cx="10"></circle><path d="m9.99998 7.5v5"></path><path d="m7.5 9.99998h5"></path></g></svg>
                 <span class="lable">Add Student</span>
@@ -192,9 +194,9 @@
             <tr>
                 <td>ID</td>
                 <td>Name</td>
-              
-              
-              
+
+
+
 
             </tr>
             <% for (Student student : students) {%>
