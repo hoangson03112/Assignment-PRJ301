@@ -91,7 +91,58 @@
                 background-color: #e80505;
                 color: wheat;
             }
+            
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 6px 12px;
+                gap: 4px;
+                height: 1.8rem;
+                width: 8.7rem;
+                border: none;
+                background: #1b1b1cd0;
+                border-radius: 20px;
+                cursor: pointer;
+            }
 
+            .lable {
+                line-height: 22px;
+                font-size: 9px;
+                color: #DE8A2A;
+                font-family: sans-serif;
+                letter-spacing: 1px;
+            }
+
+            .button:hover {
+                background: #1b1b1cea;
+            }
+
+            .button:hover .svg-icon {
+                animation: rotate 1.3s linear infinite;
+            }
+
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                25% {
+                    transform: rotate(10deg);
+                }
+
+                50% {
+                    transform: rotate(0deg);
+                }
+
+                75% {
+                    transform: rotate(-10deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
 
 
 
@@ -125,13 +176,23 @@
             }
         %>    
 
+
+        <form action="addstudent" method="POST">
+            <input type="hidden" name="gid" value="${param.gid}">
+            <button type="submit" class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon"><g stroke-width="1.5" stroke-linecap="round" stroke="#de8a2a"><circle r="7.5" cy="10" cx="10"></circle><path d="m9.99998 7.5v5"></path><path d="m7.5 9.99998h5"></path></g></svg>
+                <span class="lable">Add Student</span>
+            </button>
+        </form>
+
+
         <table border="1px" style="text-align: center">
             <tr>
                 <td>ID</td>
                 <td>Name</td>
-                <td></td>
-                <td></td>
-                <td></td>
+              
+              
+              
 
             </tr>
             <% for (Student student : students) {%>
@@ -151,12 +212,7 @@
 
         </table>
 
-        <form action="addstudent" method="POST">
-            <input type="hidden" name="gid" value="${param.gid}">
-            <input type="submit" value="Add">
 
-
-        </form>
 
 
     </body>
