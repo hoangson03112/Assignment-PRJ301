@@ -26,13 +26,17 @@ public class ViewGrade extends auth {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-       
-        int sid = Integer.parseInt(req.getParameter("sid"));
-        int subid = Integer.parseInt(req.getParameter("subid"));
-        ScoreContext  dbScore= new ScoreContext();
-        Score score= dbScore.getGrade(sid, subid);
-        req.setAttribute("score", score);
-        req.getRequestDispatcher("view/viewgrade.jsp").forward(req, resp);
+        try {
+            int sid = Integer.parseInt(req.getParameter("sid"));
+            int subid = Integer.parseInt(req.getParameter("subid"));
+            ScoreContext dbScore = new ScoreContext();
+            Score score = dbScore.getGrade(sid, subid);
+            req.setAttribute("score", score);
+            req.getRequestDispatcher("view/viewgrade.jsp").forward(req, resp);
+        } catch (Exception e) {
+            req.getRequestDispatcher("view/editScore.jsp").forward(req, resp);
+
+        }
 
     }
 }

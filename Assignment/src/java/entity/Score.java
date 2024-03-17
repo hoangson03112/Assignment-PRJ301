@@ -35,10 +35,30 @@ public class Score {
      private Project Project;
     private PE PE;
     private FE FE;
-   
+  
     private Subject subject;
     private Total total;
 
+    public Score(Active_learning Active_learning, Presentation Presentation, Computer_Project Computer_Project, Ass_1 Assignment_1, Ass_2 Assignment_2, PT_1 PT_1, PT_2 PT_2, PT_3 PT_3, Project Project, PE PE, FE FE) {
+        this.Active_learning = Active_learning;
+        this.Presentation = Presentation;
+        this.Computer_Project = Computer_Project;
+        this.Assignment_1 = Assignment_1;
+        this.Assignment_2 = Assignment_2;
+        this.PT_1 = PT_1;
+        this.PT_2 = PT_2;
+        this.PT_3 = PT_3;
+        this.Project = Project;
+        this.PE = PE;
+        this.FE = FE;
+    }
+
+    public Score() {
+    }
+
+  
+
+    
     public Subject getSubject() {
         return subject;
     }

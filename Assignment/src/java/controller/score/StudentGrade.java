@@ -28,7 +28,7 @@ public class StudentGrade extends auth {
         int sid = Integer.parseInt(req.getParameter("sid"));
         String sname = req.getParameter("sname");
         int gid = Integer.parseInt(req.getParameter("gid"));
-        int subid = Integer.parseInt(req.getParameter("subid"));
+       
 
         StudentContext dbstudent = new StudentContext();
         
@@ -53,6 +53,7 @@ public class StudentGrade extends auth {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+        
         int gid = Integer.parseInt(req.getParameter("gid"));
         int subid = Integer.parseInt(req.getParameter("subid"));
 
