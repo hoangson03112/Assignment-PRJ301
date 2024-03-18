@@ -4,22 +4,25 @@
  */
 package controller.Student;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import ennity.Account;
+import entity.Role;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Hoàng Sơn
  */
-public class addStudent extends auth {
+public class addStudent extends RBAC {
 
+    
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         req.setAttribute("gid", Integer.parseInt(req.getParameter("gid")));
         req.setAttribute("subid", Integer.parseInt(req.getParameter("subid")));
 
@@ -28,7 +31,7 @@ public class addStudent extends auth {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         req.getRequestDispatcher("view/addStudent.jsp").forward(req, resp);
     }
 

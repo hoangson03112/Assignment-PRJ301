@@ -4,11 +4,13 @@
  */
 package controller.score;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.GroupContext;
 import data.StudentContext;
 import data.SubjectContext;
 import ennity.Account;
+import entity.Role;
 import entity.Student;
 import entity.Subject;
 import java.io.IOException;
@@ -21,10 +23,10 @@ import java.util.ArrayList;
  *
  * @author Hoàng Sơn
  */
-public class StudentGrade extends auth {
+public class StudentGrade extends RBAC {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         int sid = Integer.parseInt(req.getParameter("sid"));
         String sname = req.getParameter("sname");
         int gid = Integer.parseInt(req.getParameter("gid"));
@@ -52,7 +54,7 @@ public class StudentGrade extends auth {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         
         int gid = Integer.parseInt(req.getParameter("gid"));
         int subid = Integer.parseInt(req.getParameter("subid"));

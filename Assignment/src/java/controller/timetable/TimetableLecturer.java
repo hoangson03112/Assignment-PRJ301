@@ -4,6 +4,7 @@
  */
 package controller.timetable;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.LecturerContext;
 import data.LessionContext;
@@ -11,6 +12,7 @@ import data.SlotContext;
 import ennity.Account;
 import entity.Lecturer;
 import entity.Lession;
+import entity.Role;
 import entity.TimeSlot;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -25,15 +27,15 @@ import util.DateTimeHelper;
  *
  * @author Hoàng Sơn
  */
-public class TimetableLecturer extends auth {
+public class TimetableLecturer extends RBAC {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
 
         String r_lid = req.getParameter("lid");
         int lid = 1;

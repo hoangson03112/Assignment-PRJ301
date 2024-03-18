@@ -12,7 +12,9 @@
         <title>Home</title>
         <link rel="stylesheet" href="view/home.css"/>
         <style>
-          
+            .cards .green {
+                background-color: greenyellow;
+            }
 
         </style>
 
@@ -24,21 +26,27 @@
             function redirectToTabLogin() {
                 window.location.href = "http://localhost:9999/assignment/logout";
             }
-              function redirectToTabScore() {
+            function redirectToTabScore() {
                 window.location.href = "http://localhost:9999/assignment/Grade";
+            }
+              function redirectToTabTimeTableSt() {
+                window.location.href = "http://localhost:9999/assignment/ScheduleOfWeekStudent?sid=1";
             }
         </script>
     </head>
     <body>
         <div class="cards">
-          
+
             <div class="card red" onclick="redirectToTabTimeTable()">
-                <p class="tip">Weekly Timetable</p>
+                <p class="tip">Timetable of Lecturer</p>
+
+            </div>
+            <div class="card green" onclick="redirectToTabTimeTableSt()">
+                <p class="tip">Timetable of Student</p>
 
             </div>
             <div class="card blue" onclick="redirectToTabScore()">
-                <p class="tip">Mark Report</p>
-
+                     <p class="tip">Mark Report</p>
             </div>
 
             <button class="Btn" onclick="redirectToTabLogin()">

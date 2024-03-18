@@ -4,10 +4,12 @@
  */
 package controller.score;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.GroupContext;
 import data.SubjectContext;
 import ennity.Account;
+import entity.Role;
 import entity.StudentGroup;
 import entity.Subject;
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author Hoàng Sơn
  */
-public class Grade extends auth {
+public class Grade extends RBAC {
 
     @Override
     public String getServletInfo() {
@@ -28,12 +30,12 @@ public class Grade extends auth {
     }// </editor-fold>
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         String raw_subid = req.getParameter("subid");
         int subid = 0;
         if (raw_subid != null) {

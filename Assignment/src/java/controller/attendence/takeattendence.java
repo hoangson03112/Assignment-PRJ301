@@ -4,6 +4,7 @@
  */
 package controller.attendence;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.AttendanceContext;
 import data.LessionContext;
@@ -11,6 +12,7 @@ import data.StudentContext;
 import ennity.Account;
 import entity.Attendence;
 import entity.Lession;
+import entity.Role;
 import entity.Student;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author Hoàng Sơn
  */
-public class takeattendence extends auth {
+public class takeattendence extends RBAC {
 
     @Override
     public String getServletInfo() {
@@ -30,7 +32,7 @@ public class takeattendence extends auth {
     }// </editor-fold>
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
 
         StudentContext stuDB = new StudentContext();
         AttendanceContext db = new AttendanceContext();
@@ -63,7 +65,7 @@ public class takeattendence extends auth {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp,
-            Account account) throws ServletException, IOException {
+            Account account, ArrayList<Role> roles) throws ServletException, IOException {
         int leid = Integer.parseInt(req.getParameter("leid"));
         LessionContext db = new LessionContext();
         ArrayList<Attendence> atts = new ArrayList<>();

@@ -4,28 +4,31 @@
  */
 package controller.score;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.ScoreContext;
 import ennity.Account;
+import entity.Role;
 import entity.Score;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Hoàng Sơn
  */
-public class ViewGrade extends auth {
+public class ViewGrade extends RBAC {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         try {
             int sid = Integer.parseInt(req.getParameter("sid"));
             int subid = Integer.parseInt(req.getParameter("subid"));

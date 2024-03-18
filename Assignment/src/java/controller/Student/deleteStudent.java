@@ -4,25 +4,28 @@
  */
 package controller.Student;
 
+import controller.login.RBAC;
 import controller.login.auth;
 import data.StudentContext;
 import ennity.Account;
+import entity.Role;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Hoàng Sơn
  */
-public class deleteStudent extends auth {
+public class deleteStudent extends RBAC {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         int gid = Integer.parseInt(req.getParameter("gid"));
         int sid = Integer.parseInt(req.getParameter("sid"));
-        int subid = Integer.parseInt(req.getParameter("subid"));
+    
         StudentContext dbstudent = new StudentContext();
       
           dbstudent.deleteStudent(sid);
@@ -34,7 +37,7 @@ public class deleteStudent extends auth {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
