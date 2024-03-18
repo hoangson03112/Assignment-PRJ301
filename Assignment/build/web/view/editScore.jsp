@@ -13,11 +13,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <%
-      
-    %>
+
     <body>
         <form method="POST" action="addscore">
+            <input type="hidden" name="sid" value="${sid}">
+            <input type="hidden" name="subid" value="${subid}">
             Active_learning <input name="Active_learning" type="number" step="any" /><br/>
             Presentation  <input name="Presentation" type="number" step="any"/><br/>
             Computer_Project  <input name="Computer_Project" type="number" step="any"/><br/>

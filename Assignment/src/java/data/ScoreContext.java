@@ -61,66 +61,66 @@ public class ScoreContext extends DBContext<Object> {
 
                 if (rs.getDouble("Active_learning") != Double.parseDouble("0.0")) {
                     Active_learning learning = new Active_learning();
-                    learning.setValue(Math.round(10.0*rs.getFloat("Active_learning"))/10.0);
+                    learning.setValue(Math.round(10.0 * rs.getFloat("Active_learning")) / 10.0);
                     s.setActive_learning(learning);
                 }
                 if (rs.getFloat("Assignment_1") != Double.parseDouble("0.0")) {
                     Ass_1 ass1 = new Ass_1();
-                    ass1.setValue(Math.round(10.0*rs.getFloat("Assignment_1"))/10.0);
+                    ass1.setValue(Math.round(10.0 * rs.getFloat("Assignment_1")) / 10.0);
                     s.setAssignment_1(ass1);
                 }
 
                 if (rs.getFloat("Assignment_2") != Double.parseDouble("0.0")) {
                     Ass_2 ass2 = new Ass_2();
-                    ass2.setValue(Math.round(10.0*rs.getFloat("Assignment_2"))/10.0);
+                    ass2.setValue(Math.round(10.0 * rs.getFloat("Assignment_2")) / 10.0);
                     s.setAssignment_2(ass2);
                 }
 
                 if (rs.getFloat("Computer_Project") != Double.parseDouble("0.0")) {
                     Computer_Project cproject = new Computer_Project();
-                    cproject.setValue(Math.round(10.0*rs.getFloat("Computer_Project"))/10.0);
+                    cproject.setValue(Math.round(10.0 * rs.getFloat("Computer_Project")) / 10.0);
                     s.setComputer_Project(cproject);
                 }
 
                 if (rs.getFloat("FE") != Double.parseDouble("0.0")) {
                     FE fe = new FE();
-                    fe.setValue(Math.round(10.0*rs.getFloat("FE"))/10.0);
+                    fe.setValue(Math.round(10.0 * rs.getFloat("FE")) / 10.0);
                     s.setFE(fe);
                 }
 
                 if (rs.getFloat("Presentation") != Double.parseDouble("0.0")) {
                     Presentation presentation = new Presentation();
-                    presentation.setValue(Math.round(10.0*rs.getFloat("Presentation"))/10.0);
+                    presentation.setValue(Math.round(10.0 * rs.getFloat("Presentation")) / 10.0);
                     s.setPresentation(presentation);
                 }
 
                 if (rs.getFloat("Project") != Double.parseDouble("0.0")) {
                     Project project = new Project();
-                    project.setValue(Math.round(10.0*rs.getFloat("Project"))/10.0);
+                    project.setValue(Math.round(10.0 * rs.getFloat("Project")) / 10.0);
                     s.setProject(project);
                 }
 
                 if (rs.getFloat("PT_1") != Double.parseDouble("0.0")) {
                     PT_1 pt1 = new PT_1();
-                    pt1.setValue(Math.round(10.0*rs.getFloat("PT_1"))/10.0);
+                    pt1.setValue(Math.round(10.0 * rs.getFloat("PT_1")) / 10.0);
                     s.setPT_1(pt1);
                 }
 
                 if (rs.getFloat("PT_2") != Double.parseDouble("0.0")) {
                     PT_2 pt2 = new PT_2();
-                    pt2.setValue(Math.round(10.0*rs.getFloat("PT_2"))/10.0);
+                    pt2.setValue(Math.round(10.0 * rs.getFloat("PT_2")) / 10.0);
                     s.setPT_2(pt2);
                 }
 
                 if (rs.getFloat("PT_3") != Double.parseDouble("0.0")) {
                     PT_3 pt3 = new PT_3();
-                    pt3.setValue(Math.round(10.0*rs.getFloat("PT_3"))/10.0);
+                    pt3.setValue(Math.round(10.0 * rs.getFloat("PT_3")) / 10.0);
                     s.setPT_3(pt3);
                 }
 
                 if (rs.getFloat("PE") != Double.parseDouble("0.0")) {
                     PE pe = new PE();
-                    pe.setValue(Math.round(10.0*rs.getFloat("PE"))/10.0);
+                    pe.setValue(Math.round(10.0 * rs.getFloat("PE")) / 10.0);
                     s.setPE(pe);
                 }
 
@@ -130,6 +130,68 @@ public class ScoreContext extends DBContext<Object> {
             Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
+    }
+
+    public void addScore(int sid, int subid, Score s) {
+        try {
+            String sql = "INSERT INTO [dbo].[Score]\n"
+                    + "           ([subid]\n"
+                    + "           ,[sid]\n"
+                    + "           ,[Active_learning]\n"
+                    + "           ,[Computer_Project]\n"
+                    + "           ,[Presentation]\n"
+                    + "           ,[Assignment_1]\n"
+                    + "           ,[Assignment_2]\n"
+                    + "           ,[PT_1]\n"
+                    + "           ,[PT_2]\n"
+                    + "           ,[PT_3]\n"
+                    + "           ,[Project]\n"
+                    + "           ,[PE]\n"
+                    + "           ,[FE])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, subid);
+            stm.setInt(2, sid);
+            stm.setDouble(3, s.getActive_learning().getValue());
+
+            stm.setDouble(4, s.getComputer_Project().getValue());
+
+            stm.setDouble(5, s.getPresentation().getValue());
+
+            stm.setDouble(6, s.getAssignment_1().getValue());
+
+            stm.setDouble(7, s.getAssignment_2().getValue());
+
+            stm.setDouble(8, s.getPT_1().getValue());
+
+            stm.setDouble(9, s.getPT_2().getValue());
+
+            stm.setDouble(10, s.getPT_3().getValue());
+
+            stm.setDouble(11, s.getProject().getValue());
+
+            stm.setDouble(12, s.getPE().getValue());
+
+            stm.setDouble(13, s.getFE().getValue());
+
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

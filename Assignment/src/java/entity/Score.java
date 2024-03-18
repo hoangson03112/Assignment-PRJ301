@@ -32,10 +32,10 @@ public class Score {
     private PT_1 PT_1;
     private PT_2 PT_2;
     private PT_3 PT_3;
-     private Project Project;
+    private Project Project;
     private PE PE;
     private FE FE;
-  
+
     private Subject subject;
     private Total total;
 
@@ -56,9 +56,6 @@ public class Score {
     public Score() {
     }
 
-  
-
-    
     public Subject getSubject() {
         return subject;
     }
@@ -75,8 +72,6 @@ public class Score {
         this.total = total;
     }
 
-    
-    
     public PE getPE() {
         return PE;
     }
@@ -172,7 +167,5 @@ public class Score {
     public void setProject(Project Project) {
         this.Project = Project;
     }
-
-  
 
 }

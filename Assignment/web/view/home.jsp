@@ -35,10 +35,7 @@
         </script>
     </head>
     <body>
-        <%= request.getAttribute("lid")%>
-        <%= request.getAttribute("sid")%>
-
-        <h2><%= request.getAttribute("displayname")%></h2>
+        <h2>Welcome <%= request.getAttribute("displayname")%></h2>
         <div class="cards">
             <div class="card red" onclick="redirectToTabTimeTable()">
                 <p class="tip">Timetable of Lecturer</p>

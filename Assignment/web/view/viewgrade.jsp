@@ -19,7 +19,7 @@
             Score score = (Score) request.getAttribute("score");
             GroupContext dbGroup = new GroupContext();
             StudentGroup group = dbGroup.get(Integer.parseInt(request.getParameter("gid")));
-  int count =0;
+                                       int count =0;
                                         double total=0;
 
         %>

@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>controller.logout.logout</servlet-class>
+        <servlet-class>controller.login.logout</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>takeattendence</servlet-name>
@@ -18,14 +18,14 @@
     </servlet>
     <servlet>
         <servlet-name>home</servlet-name>
-        <servlet-class>controller.home.home</servlet-class>
+        <servlet-class>controller.login.home</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Score</servlet-name>
         <servlet-class>controller.score.Grade</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewScore</servlet-name>
+        <servlet-name>StudentGrade</servlet-name>
         <servlet-class>controller.score.StudentGrade</servlet-class>
     </servlet>
     <servlet>
@@ -73,7 +73,7 @@
         <url-pattern>/Grade</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewScore</servlet-name>
+        <servlet-name>StudentGrade</servlet-name>
         <url-pattern>/StudentGrade</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

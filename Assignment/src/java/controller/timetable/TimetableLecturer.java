@@ -42,13 +42,10 @@ public class TimetableLecturer extends RBAC {
         if (r_lid != null) {
             lid = Integer.parseInt(r_lid);
         }
-
         String raw_from = req.getParameter("from");
-
         String raw_to = req.getParameter("to");
-
+        
         Date today = new Date();
-
         java.sql.Date from = null;
         java.sql.Date to = null;
 
