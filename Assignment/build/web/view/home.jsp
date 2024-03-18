@@ -21,7 +21,7 @@
 
         <script>
             function redirectToTabTimeTable() {
-                window.location.href = "http://localhost:9999/assignment/ScheduleOfWeek";
+                window.location.href = "http://localhost:9999/assignment/ScheduleOfWeek?lid=" +<%= request.getAttribute("lid")%>;
             }
             function redirectToTabLogin() {
                 window.location.href = "http://localhost:9999/assignment/logout";
@@ -29,14 +29,17 @@
             function redirectToTabScore() {
                 window.location.href = "http://localhost:9999/assignment/Grade";
             }
-              function redirectToTabTimeTableSt() {
-                window.location.href = "http://localhost:9999/assignment/ScheduleOfWeekStudent?sid=1";
+            function redirectToTabTimeTableSt() {
+                window.location.href = "http://localhost:9999/assignment/ScheduleOfWeekStudent?sid=" + <%= request.getAttribute("sid")%>;
             }
         </script>
     </head>
     <body>
-        <div class="cards">
+        <%= request.getAttribute("lid")%>
+        <%= request.getAttribute("sid")%>
 
+        <h2><%= request.getAttribute("displayname")%></h2>
+        <div class="cards">
             <div class="card red" onclick="redirectToTabTimeTable()">
                 <p class="tip">Timetable of Lecturer</p>
 
@@ -46,7 +49,7 @@
 
             </div>
             <div class="card blue" onclick="redirectToTabScore()">
-                     <p class="tip">Mark Report</p>
+                <p class="tip">Mark Report</p>
             </div>
 
             <button class="Btn" onclick="redirectToTabLogin()">

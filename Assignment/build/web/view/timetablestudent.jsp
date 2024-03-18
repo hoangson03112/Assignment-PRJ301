@@ -16,7 +16,6 @@
         <title>JSP Page</title>
         <style>
 
-
             td {
                 width: 150px; /* Đặt chiều rộng của các ô là 150px */
                 height: 20px;

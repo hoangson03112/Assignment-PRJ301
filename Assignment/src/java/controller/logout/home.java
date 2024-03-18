@@ -7,9 +7,7 @@ package controller.home;
 import controller.login.auth;
 import ennity.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -25,12 +23,15 @@ public class home extends auth {
     }// </editor-fold>
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account  account) throws ServletException, IOException {
-      
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+        req.setAttribute("lid", account.getLecturer().getId());
+        req.setAttribute("sid", account.getStudent().getSid());
+        req.setAttribute("displayname", account.getDisplayname());
         req.getRequestDispatcher("view/home.jsp").forward(req, resp);
     }
 

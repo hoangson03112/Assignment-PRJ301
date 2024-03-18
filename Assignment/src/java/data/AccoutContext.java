@@ -5,6 +5,8 @@
 package data;
 
 import ennity.Account;
+import entity.Lecturer;
+import entity.Student;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,21 +20,27 @@ public class AccoutContext extends DBContext {
 
     public Account getAccout(String username, String password) {
         try {
-            String sql = "select a.username,a.password,a.displayname from [dbo].[Account] a\n"
-                    + "where a.username =? and a.password=?";
+            String sql = "select a.username,a.password,a.displayname,a.lid,a.sid from [dbo].[Account] a\n"
+                    + "                  where a.username =? and a.password=?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
+            
             ResultSet rs = stm.executeQuery();
-            if (rs.next()) {
+            if (rs.next()){
+                Student s= new Student();
+                s.setSid(rs.getInt("sid"));
+                Lecturer l= new Lecturer();
+                l.setId(rs.getInt("lid"));
                 Account accout = new Account();
+                accout.setLecturer(l);
+                accout.setStudent(s);
                 accout.setUser(rs.getString("username").trim());
                 accout.setPass(rs.getString("password").trim());
                 accout.setDisplayname(rs.getString("displayname").trim());
                 return accout;
             }
 
-      
         } catch (SQLException ex) {
             Logger.getLogger(AccoutContext.class.getName()).log(Level.SEVERE, null, ex);
         }

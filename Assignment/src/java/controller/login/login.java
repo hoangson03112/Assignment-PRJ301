@@ -36,7 +36,7 @@ public class login extends HttpServlet {
                 Cookie c_remember = new Cookie("remember", remember);
               
                 c_user.setMaxAge(1800);
-                  
+                    
                 c_pass.setMaxAge(1800);
                 c_remember.setMaxAge(1800);
                 resp.addCookie(c_pass);
@@ -51,7 +51,7 @@ public class login extends HttpServlet {
 
         }
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
@@ -61,7 +61,7 @@ public class login extends HttpServlet {
             
             for (Cookie cookie : cookies) {
                 
-                System.out.println(cookie.getName()+":"+cookie.getName());
+             
                 if (cookie.getName().equals("remember") && cookie.getValue().equals("remember")) {
                     isRemember = true;
                     resp.sendRedirect("home");

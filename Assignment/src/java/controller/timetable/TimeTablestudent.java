@@ -69,7 +69,6 @@ public class TimeTablestudent extends RBAC {
         ArrayList<Lession> lessions = lessDB.getBySid(sid, from, to);
         AttendanceContext dbatts= new AttendanceContext();
         ArrayList<Attendence> atts= dbatts.getAtts(sid);
-        System.out.println(atts);
         req.setAttribute("atts", atts);
         req.setAttribute("sid", sid);
         req.setAttribute("from", from);
