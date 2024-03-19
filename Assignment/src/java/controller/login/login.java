@@ -47,7 +47,7 @@ public class login extends HttpServlet {
             session.setAttribute("account", account);
             resp.sendRedirect("home");
         } else {
-            resp.sendRedirect("view/404.jsp");
+            resp.getWriter().print("login Failed");
 
         }
     }

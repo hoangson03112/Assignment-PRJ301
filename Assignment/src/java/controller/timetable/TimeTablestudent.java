@@ -78,7 +78,7 @@ public class TimeTablestudent extends RBAC {
             req.setAttribute("lessions", lessions);
 
             req.getRequestDispatcher("view/timetablestudent.jsp").forward(req, resp);
-            
+
         } else if (account.getStudent().getSid() == 0 && account.getLecturer().getId() == 0) {
             String r_sid = req.getParameter("sid");
             int sid = Integer.parseInt(r_sid);
@@ -120,7 +120,8 @@ public class TimeTablestudent extends RBAC {
             req.setAttribute("slots", slots);
             req.setAttribute("dates", dates);
             req.setAttribute("lessions", lessions);
-
+            
+             req.setAttribute("displayname", account.getDisplayname());
             req.getRequestDispatcher("view/timetablestudent.jsp").forward(req, resp);
         }
     }

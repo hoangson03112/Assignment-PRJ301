@@ -125,16 +125,25 @@ public class ScoreContext extends DBContext<Object> {
                 }
 
             }
-
+            return s;
         } catch (SQLException ex) {
             Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return s;
+        return null;
     }
 
     public void addScore(int sid, int subid, Score s) {
         try {
-            String sql = "INSERT INTO [dbo].[Score]\n"
+          
+            connection.setAutoCommit(false);
+            String sql_remove_score = "DELETE FROM [dbo].[Score]\n"
+                    + "      WHERE sid=? and subid=?";
+            PreparedStatement stm_remove = connection.prepareStatement(sql_remove_score);
+            stm_remove.setInt(1, sid);
+            stm_remove.setInt(2, subid);
+            stm_remove.executeUpdate();
+
+            String sql_insert = "INSERT INTO [dbo].[Score]\n"
                     + "           ([subid]\n"
                     + "           ,[sid]\n"
                     + "           ,[Active_learning]\n"
@@ -162,7 +171,7 @@ public class ScoreContext extends DBContext<Object> {
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?)";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            PreparedStatement stm = connection.prepareStatement(sql_insert);
             stm.setInt(1, subid);
             stm.setInt(2, sid);
             stm.setDouble(3, s.getActive_learning().getValue());
@@ -188,8 +197,20 @@ public class ScoreContext extends DBContext<Object> {
             stm.setDouble(13, s.getFE().getValue());
 
             stm.executeUpdate();
+            connection.commit();
         } catch (SQLException ex) {
             Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(ScoreContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

@@ -35,7 +35,6 @@ public class Score {
     private Project Project;
     private PE PE;
     private FE FE;
-
     private Subject subject;
     private Total total;
 

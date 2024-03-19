@@ -35,10 +35,12 @@
 
         <h1><%=score.getSubject().getName()%>_<%=group.getName()%>_<%=score.getStudent().getSname()%></h1>
 
-        <form method="get" action="addscore" style="margin-left: 250px">
+
+        <form action="updatescore" method="get">
             <input type="hidden" name="subid" value="${param.subid}">
+            <input type="hidden" name="gid" value="${param.gid}">
             <input type="hidden" name="sid" value="${param.sid}">
-            <input type="submit"  value="Edit" />
+            <input type="submit" value="Edit"/>
         </form>
 
         <table border="1px" style="text-align: center;
@@ -47,7 +49,6 @@
                 <td>Grade Item</td>
                 <td>Value</td>
             </tr>
-
 
             <%
               if (score != null) {
@@ -58,15 +59,12 @@
                         try {
 
                             field.setAccessible(true);
-
                             Object value = field.get(score);
-
                             if (value != null && !field.getType().isPrimitive()) {
                                 Field[] subFields = value.getClass().getDeclaredFields();
                                 for (Field subField : subFields) {
                                     try {
                                         
-                                      
                                         subField.setAccessible(true);
                                         Object subValue = subField.get(value);
                                         if (subValue != null && !field.getName().equals("student") && !field.getName().equals("subject")) {

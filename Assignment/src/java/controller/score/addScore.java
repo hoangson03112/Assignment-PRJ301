@@ -46,13 +46,13 @@ public class addScore extends RBAC {
         FE f = new FE();
         PE p = new PE();
 
+        int gid = Integer.parseInt(req.getParameter("gid"));
         int sid = Integer.parseInt(req.getParameter("sid"));
         int subid = Integer.parseInt(req.getParameter("subid"));
 
         double Acl = 0;
         if (req.getParameter("Active_learning").length() != 0) {
             Acl = Double.parseDouble(req.getParameter("Active_learning"));
-
         }
         Active_learning.setValue(Acl);
 
@@ -132,16 +132,19 @@ public class addScore extends RBAC {
 
         f.setValue(FE);
         Score score = new Score(Active_learning, Presentation, cp, ass1, ass2, p1, p2, p3, pj, p, f);
+
         ScoreContext db = new ScoreContext();
         db.addScore(sid, subid, score);
-        resp.getWriter().print("Add Success");
+        resp.sendRedirect("StudentGrade?subid=" + subid + "&gid=" + gid);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         ScoreContext dbScore = new ScoreContext();
-        Score score = dbScore.getGrade(Integer.parseInt(req.getParameter("sid")), Integer.parseInt(req.getParameter("subid")));
+        Score score = dbScore.getGrade(Integer.parseInt(req.getParameter("sid ")), Integer.parseInt(req.getParameter("subid")));
+        String mode = req.getParameter("mode");
+        req.setAttribute("mode", mode);
         req.setAttribute("score", score);
         req.getRequestDispatcher("view/editScore.jsp").forward(req, resp);
 

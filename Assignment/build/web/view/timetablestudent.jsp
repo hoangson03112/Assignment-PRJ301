@@ -146,11 +146,13 @@
         </script>
         <%
             int sid = (int) request.getAttribute("sid");
+            String displayname= (String )request.getAttribute("displayname");
 
         %>
 
-    </head>
-    <body>
+    </head> 
+    <body>  
+  
         <div class="navigation-card" onclick="redirectToTab()">
             <a href="#" class="tab">
                 <svg
@@ -196,13 +198,13 @@
                                 <c:if test="${(les.getDate() eq d) and (les.slot.id eq slot.id)}">
                                     ${les.group.name} - ${les.group.subject.name}
                                     <c:forEach items="${requestScope.atts}" var="att">
-                                    <c:if test="${(att.lession.id eq les.id) }">
-                                        ${att.present?"present":"absent"}
-                                    </c:if >
+                                        <c:if test="${(att.lession.id eq les.id) }">
+                                            ${att.present?"present":"absent"}
+                                        </c:if >
 
-                                </c:forEach>
+                                    </c:forEach>
                                 </c:if >
-                                
+
 
 
                             </c:forEach>

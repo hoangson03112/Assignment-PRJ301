@@ -19,7 +19,7 @@ public class RoleContext extends DBContext<Role> {
     public ArrayList<Role> list(String username, String url) {
         ArrayList<Role> roles = new ArrayList<>();
         try {
-
+          
             String sql = "select r.roleid,r.rolename\n"
                     + "from [dbo].[Account] a\n"
                     + "join [dbo].[Role_Account] ra on a.username=ra.username\n"

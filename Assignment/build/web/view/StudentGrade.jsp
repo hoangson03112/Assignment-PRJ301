@@ -17,8 +17,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Score Page</title>
         <style>
-
-            #dele {
+            #edit{
+                background-color: blue !important;
+            }
+            #dele,#edit {
                 margin: 0 5px;
                 position: relative;
                 background-color: rgb(230, 34, 77);
@@ -32,7 +34,6 @@
                 height: 1.5rem;
                 color: #fff;
                 border: none;
-
                 transition: all 0.3s ease-in-out;
                 z-index: 1;
                 overflow: hidden;
@@ -152,7 +153,7 @@
 
         <% ArrayList<Student> students = (ArrayList<Student>) request.getAttribute("students");
             int subid = (int) request.getAttribute("subid");
-            ArrayList<Subject> subs = (ArrayList<Subject>) request.getAttribute("subs");
+        
             GroupContext dbgr = new GroupContext();
             ArrayList<StudentGroup> grs = dbgr.list(subid);
             int gid = Integer.parseInt(request.getParameter("gid"));
@@ -160,7 +161,6 @@
     </head>
 
     <body>
-
         <form action="Grade" method="get">
             <input type="hidden" name="subid" value="${param.subid}">
             <button id="back" type="submit">
@@ -188,36 +188,28 @@
             </button>
         </form>
 
-
-        <table border="1px" style="text-align: center;width: 500px">
+        <table border="1px" style="width: 600px">
             <tr>
                 <td>ID</td>
                 <td>Name</td>
-
-
-
-
             </tr>
+
             <% for (Student student : students) {%>
             <tr>
-
                 <td><%=student.getSid()%></td> 
                 <td><%=student.getSname()%></td> 
                 <td><a style=" text-decoration: none; " href="ViewGrade?gid=<%=gid %>&sid=<%=student.getSid()%>&subid=<%=subid%>">View Grade</a></td> 
-                <td> <form method="POST" action="deletestudent">
+                <td>
+                    <form method="POST" action="deletestudent">
                         <input type="hidden" name="gid" value="${param.gid}">
                         <input type="hidden" name="subid" value="${param.subid}">
                         <input type="hidden" name="sid" value="<%=student.getSid()%>">
                         <button id="dele" type="submit">Delete</button>
                     </form>
+             
                 </td>
             </tr>
             <% }%>
-
         </table>
-
-
-
-
     </body>
 </html>

@@ -5,14 +5,11 @@
 package controller.score;
 
 import controller.login.RBAC;
-import controller.login.auth;
 import data.GroupContext;
 import data.StudentContext;
-import data.SubjectContext;
 import ennity.Account;
 import entity.Role;
 import entity.Student;
-import entity.Subject;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,12 +27,12 @@ public class StudentGrade extends RBAC {
         int sid = Integer.parseInt(req.getParameter("sid"));
         String sname = req.getParameter("sname");
         int gid = Integer.parseInt(req.getParameter("gid"));
-       
+        int subid = Integer.parseInt(req.getParameter("subid"));
 
         StudentContext dbstudent = new StudentContext();
-        
-        ArrayList<Student> students= dbstudent.list();
-        
+
+        ArrayList<Student> students = dbstudent.list();
+
         boolean isExisted = false;
         for (Student student : students) {
             if (student.getSid() == sid) {
@@ -43,29 +40,25 @@ public class StudentGrade extends RBAC {
                 resp.getWriter().print("Student existed!");
                 break;
             }
-            
         }
         if (!isExisted) {
             dbstudent.addStudent(sid, sname);
             dbstudent.addEnrollment(sid, gid);
-            resp.getWriter().print("Add Student Success!");
+
+            resp.sendRedirect("StudentGrade?subid=" + subid + "&gid=" + gid);
         }
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
-        
+
         int gid = Integer.parseInt(req.getParameter("gid"));
         int subid = Integer.parseInt(req.getParameter("subid"));
 
         GroupContext dbGroup = new GroupContext();
         ArrayList<Student> students = dbGroup.getStudentByGroup(gid);
-
-        SubjectContext dbSubject = new SubjectContext();
-        ArrayList<Subject> subs = dbSubject.list();
         req.setAttribute("subid", subid);
-        req.setAttribute("subs", subs);
         req.setAttribute("students", students);
         req.getRequestDispatcher("view/StudentGrade.jsp").forward(req, resp);
     }
