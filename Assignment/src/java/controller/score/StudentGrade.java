@@ -65,9 +65,7 @@ public class StudentGrade extends RBAC {
         SubjectContext dbSubject = new SubjectContext();
         ArrayList<Subject> subs = dbSubject.list();
         req.setAttribute("subid", subid);
-
         req.setAttribute("subs", subs);
-
         req.setAttribute("students", students);
         req.getRequestDispatcher("view/StudentGrade.jsp").forward(req, resp);
     }

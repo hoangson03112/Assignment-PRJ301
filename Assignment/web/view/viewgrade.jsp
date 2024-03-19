@@ -34,7 +34,15 @@
 
 
         <h1><%=score.getSubject().getName()%>_<%=group.getName()%>_<%=score.getStudent().getSname()%></h1>
-        <table border="1px" style="text-align: center">
+
+        <form method="get" action="addscore" style="margin-left: 250px">
+            <input type="hidden" name="subid" value="${param.subid}">
+            <input type="hidden" name="sid" value="${param.sid}">
+            <input type="submit"  value="Edit" />
+        </form>
+
+        <table border="1px" style="text-align: center;
+               width: 300px">
             <tr>
                 <td>Grade Item</td>
                 <td>Value</td>

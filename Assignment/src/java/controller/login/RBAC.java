@@ -35,7 +35,7 @@ public abstract class RBAC extends auth {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
         ArrayList<Role> roles = getRoles(req, account);
         if (roles.size() < 1) {
-            resp.getWriter().print("can not access");
+            req.getRequestDispatcher("view/404.jsp").forward(req, resp);
         } else {
             doPost(req, resp, account, roles);
 
@@ -48,7 +48,7 @@ public abstract class RBAC extends auth {
             Account account) throws ServletException, IOException {
         ArrayList<Role> roles = getRoles(req, account);
         if (roles.size() < 1) {
-            resp.getWriter().print("can not access");
+            req.getRequestDispatcher("view/404.jsp").forward(req, resp);
         } else {
             doGet(req, resp, account, roles);
 

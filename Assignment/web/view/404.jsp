@@ -175,9 +175,9 @@
         <section class="fof">
             <div class="cd-container cd-max-width-sm">
                 <div class="fof__text">
-                    <h1>Login Failed </h1>
+                    <h1>Access Failed </h1>
                     <p>We're sorry, but we couldn't log you in at this time. Please double-check your username and password and try again. If you continue to experience issues, please contact customer support for further assistance.</p>
-                    <p><a href="../login">Go to login page.</a> <br/>Thank you for your understanding</p>
+                    <p><a href="login">Go to login page.</a> <br/>Thank you for your understanding</p>
                 </div>
 
                 <div class="fof__animation" aria-label="404 animation">

@@ -35,49 +35,94 @@ public class TimeTablestudent extends RBAC {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
-         String r_sid = req.getParameter("sid");
+        if (account.getStudent().getSid() == Integer.parseInt(req.getParameter("sid"))) {
+            String r_sid = req.getParameter("sid");
             int sid = Integer.parseInt(r_sid);
-       
 
-        String raw_from = req.getParameter("from");
+            String raw_from = req.getParameter("from");
 
-        String raw_to = req.getParameter("to");
+            String raw_to = req.getParameter("to");
 
-        Date today = new Date();
+            Date today = new Date();
 
-        java.sql.Date from = null;
-        java.sql.Date to = null;
+            java.sql.Date from = null;
+            java.sql.Date to = null;
 
-        if (raw_from == null) {
-            from = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.getWeekStart(today));
-        } else {
-            from = java.sql.Date.valueOf(raw_from);
+            if (raw_from == null) {
+                from = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.getWeekStart(today));
+            } else {
+                from = java.sql.Date.valueOf(raw_from);
+            }
+
+            if (raw_to == null) {
+                to = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.
+                        addDaysToDate(DateTimeHelper.getWeekStart(today), 6));
+            } else {
+                to = java.sql.Date.valueOf(raw_to);
+            }
+            ArrayList<java.sql.Date> dates = DateTimeHelper.getDatesBetween(from, to);
+
+            SlotContext slotDB = new SlotContext();
+            ArrayList<TimeSlot> slots = slotDB.getTimeSlot();
+
+            LessionContext lessDB = new LessionContext();
+            ArrayList<Lession> lessions = lessDB.getBySid(sid, from, to);
+            AttendanceContext dbatts = new AttendanceContext();
+            ArrayList<Attendence> atts = dbatts.getAtts(sid);
+            req.setAttribute("atts", atts);
+            req.setAttribute("sid", sid);
+            req.setAttribute("from", from);
+            req.setAttribute("to", to);
+            req.setAttribute("slots", slots);
+            req.setAttribute("dates", dates);
+            req.setAttribute("lessions", lessions);
+
+            req.getRequestDispatcher("view/timetablestudent.jsp").forward(req, resp);
+            
+        } else if (account.getStudent().getSid() == 0 && account.getLecturer().getId() == 0) {
+            String r_sid = req.getParameter("sid");
+            int sid = Integer.parseInt(r_sid);
+
+            String raw_from = req.getParameter("from");
+
+            String raw_to = req.getParameter("to");
+
+            Date today = new Date();
+
+            java.sql.Date from = null;
+            java.sql.Date to = null;
+
+            if (raw_from == null) {
+                from = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.getWeekStart(today));
+            } else {
+                from = java.sql.Date.valueOf(raw_from);
+            }
+
+            if (raw_to == null) {
+                to = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.
+                        addDaysToDate(DateTimeHelper.getWeekStart(today), 6));
+            } else {
+                to = java.sql.Date.valueOf(raw_to);
+            }
+            ArrayList<java.sql.Date> dates = DateTimeHelper.getDatesBetween(from, to);
+
+            SlotContext slotDB = new SlotContext();
+            ArrayList<TimeSlot> slots = slotDB.getTimeSlot();
+
+            LessionContext lessDB = new LessionContext();
+            ArrayList<Lession> lessions = lessDB.getBySid(sid, from, to);
+            AttendanceContext dbatts = new AttendanceContext();
+            ArrayList<Attendence> atts = dbatts.getAtts(sid);
+            req.setAttribute("atts", atts);
+            req.setAttribute("sid", sid);
+            req.setAttribute("from", from);
+            req.setAttribute("to", to);
+            req.setAttribute("slots", slots);
+            req.setAttribute("dates", dates);
+            req.setAttribute("lessions", lessions);
+
+            req.getRequestDispatcher("view/timetablestudent.jsp").forward(req, resp);
         }
-
-        if (raw_to == null) {
-            to = DateTimeHelper.convertUtilDateToSqlDate(DateTimeHelper.
-                    addDaysToDate(DateTimeHelper.getWeekStart(today), 6));
-        } else {
-            to = java.sql.Date.valueOf(raw_to);
-        }
-        ArrayList<java.sql.Date> dates = DateTimeHelper.getDatesBetween(from, to);
-      
-        SlotContext slotDB = new SlotContext();
-        ArrayList<TimeSlot> slots = slotDB.getTimeSlot();
-
-        LessionContext lessDB = new LessionContext();
-        ArrayList<Lession> lessions = lessDB.getBySid(sid, from, to);
-        AttendanceContext dbatts= new AttendanceContext();
-        ArrayList<Attendence> atts= dbatts.getAtts(sid);
-        req.setAttribute("atts", atts);
-        req.setAttribute("sid", sid);
-        req.setAttribute("from", from);
-        req.setAttribute("to", to);
-        req.setAttribute("slots", slots);
-        req.setAttribute("dates", dates);
-        req.setAttribute("lessions", lessions);
-        
-        req.getRequestDispatcher("view/timetablestudent.jsp").forward(req, resp);
     }
 
 }
